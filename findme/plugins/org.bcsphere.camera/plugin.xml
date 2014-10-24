@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+		id="org.bcsphere.camera"
+        version="0.1.0">
+
+    <name>BCCamera</name>
+    <license>Apache 2.0</license>
+    <keywords>camera</keywords>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+	
+    <js-module src="www/camera.js" name="camera">
+        <clobbers target="BCCamera" />
+    </js-module>	
+	
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="BCCamera">
+                <param name="android-package" value="org.bcsphere.camera.Camera"/>
+            </feature>
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-feature android:name="android.hardware.camera" />
+            <uses-feature android:name="android.hardware.camera.autofocus" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
+        <source-file src="src/android/org/bcsphere/camera/Camera.java" target-dir="src/org/bcsphere/camera" />
+        <source-file src="src/android/org/bcsphere/camera/TakePictureAty.java" target-dir="src/org/bcsphere/camera" />
+        <source-file src="src/android/take_picture_activity.xml" target-dir="res/layout" />
+        <source-file src="src/android/popupwindow_view.xml" target-dir="res/layout" />
+		<source-file src="www/images/take_picture.png" target-dir="res/drawable-xxhdpi" />
+        <source-file src="www/images/flash_turn_on.png" target-dir="res/drawable-xxhdpi" />
+        <source-file src="www/images/flash_turn_off.png" target-dir="res/drawable-xxhdpi" />
+        <source-file src="www/images/flash_auto.png" target-dir="res/drawable-xxhdpi" />
+        <source-file src="www/images/close.png" target-dir="res/drawable-xxhdpi" />
+        <source-file src="www/images/lens_switch.png" target-dir="res/drawable-xxhdpi" />
+    </platform>
+   
+
+	<!-- ios -->
+    <!-- <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BCBluetooth">
+                <param name="ios-package" value="BCBluetooth"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/BCBluetooth.h" />
+	    <source-file src="src/ios/BCBluetooth.m" />
+        
+		<framework src="CoreBluetooth.framework" weak="true" />
+    </platform> -->
+
+</plugin>

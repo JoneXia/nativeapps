@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+		id="org.bcsphere.telephony"
+        version="0.1.0">
+
+    <name>Telephony</name>
+    <license>Apache 2.0</license>
+    <keywords>telephony,telephone</keywords>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+	
+    <js-module src="www/telephony.js" name="telephony">
+        <clobbers target="Telephony" />
+    </js-module>	
+	
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Telephony">
+                <param name="android-package" value="org.bcsphere.telephony.Telephony"/>
+            </feature>
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        </config-file>
+
+        <source-file src="src/android/org/bcsphere/telephony/Telephony.java" target-dir="src/org/bcsphere/telephony" />
+    </platform>
+   
+
+	<!-- ios -->
+    <!-- <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BCBluetooth">
+                <param name="ios-package" value="BCBluetooth"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/BCBluetooth.h" />
+	    <source-file src="src/ios/BCBluetooth.m" />
+        
+		<framework src="CoreBluetooth.framework" weak="true" />
+    </platform> -->
+
+</plugin>
